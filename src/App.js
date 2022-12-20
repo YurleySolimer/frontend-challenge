@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
-import Dashboard from './components/Dashboard'
-
+import AllRoutes from './components/AllRoutes'
 export class App extends Component {
   static propTypes = {}
 
   render() {
     return (
       <div>
-        <Dashboard/>
+        <AllRoutes/>
       </div>
     )
   }
