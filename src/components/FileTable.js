@@ -32,7 +32,7 @@ function FileTable() {
 
         getFile()
     }, [file])
-    
+
   return (
     <>
     <div className="m-2">

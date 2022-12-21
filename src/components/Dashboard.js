@@ -3,6 +3,7 @@ import Table from 'react-bootstrap/Table';
 import axios from "axios";
 import { getServerSyncAPIURL } from "../helpers/getServer";
 import { useNavigate } from "react-router-dom";
+import { FaFileCsv } from "react-icons/fa";
 
 function Dashboard() {
     const [files, setFiles] = useState()
@@ -27,15 +28,22 @@ function Dashboard() {
     return(
         <div>
            <h2>Inicio</h2>
-           <Table  striped bordered hover size="sm" responsive>
+           <Table  striped bordered hover size="sm" responsive style={{cursos: 'pointer'}}>
             <thead>
                 <tr>
-                    <th>Filename</th>
+                    <th> Filename</th>
                 </tr>
             </thead>
             <tbody>
                 {files && (
                     <>
+                    <tr>
+                        <td 
+                            onClick={() => {
+                                handleFile('all')
+                            }}> <FaFileCsv/> ALL FILES
+                        </td>
+                    </tr>
                     {files?.map((file) => {
                         return (
                             <> 
@@ -43,19 +51,13 @@ function Dashboard() {
                                 <td 
                                     onClick={() => {
                                         handleFile(file)
-                                    }}>{file}
+                                    }}> <FaFileCsv/> {file}
                                 </td>
                             </tr>
                             </>
                         )
                     })}
-                    <tr>
-                        <td 
-                            onClick={() => {
-                                handleFile('all')
-                            }}>all files
-                        </td>
-                    </tr>
+                    
                     </>
                 )}
             </tbody>
