@@ -4,6 +4,7 @@ import axios from "axios";
 import { getServerSyncAPIURL } from "../helpers/getServer";
 import { useNavigate } from "react-router-dom";
 import { FaFileCsv } from "react-icons/fa";
+import { FaInfoCircle} from "react-icons/fa";
 
 function Dashboard() {
     const [files, setFiles] = useState()
@@ -27,11 +28,20 @@ function Dashboard() {
 
     return(
         <div>
-           <h2>Inicio</h2>
+           <h2>Index</h2>
            <Table  striped bordered hover size="sm" responsive style={{cursos: 'pointer'}}>
             <thead>
                 <tr>
-                    <th> Filename</th>
+                    <th> 
+                        <h6 style={{fontSize: '11px', color:'gray'}}> 
+                            <FaInfoCircle/> 
+                            {" "}
+                            select a file to view the data
+                        </h6>
+                        <h5 style={{marginTop:'20px'}}>
+                            Filename
+                        </h5>
+                    </th>
                 </tr>
             </thead>
             <tbody>
