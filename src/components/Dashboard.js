@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Table from 'react-bootstrap/Table';
-import { getFiles } from '../actions/getFiles';
 import axios from "axios";
 import { getServerSyncAPIURL } from "../helpers/getServer";
 import { useNavigate } from "react-router-dom";
@@ -14,7 +13,7 @@ function Dashboard() {
     useEffect(()=> {
         async function getFiles() {
             axios
-            .get(`${getServerSyncAPIURL()}/api/v1`)
+            .get(`${getServerSyncAPIURL()}/files/list`)
             .then((res) => {
                 setFiles(res.data)
             })
@@ -22,16 +21,16 @@ function Dashboard() {
               console.error(error);
             });
         }
-
         getFiles()
     }, [])
+
     return(
         <div>
            <h2>Inicio</h2>
            <Table  striped bordered hover size="sm" responsive>
             <thead>
                 <tr>
-                <th>Filename</th>
+                    <th>Filename</th>
                 </tr>
             </thead>
             <tbody>
@@ -41,13 +40,22 @@ function Dashboard() {
                         return (
                             <> 
                             <tr>
-                                <td onClick={() => {
-                                    handleFile(file)
-                                }}>{file}</td>
+                                <td 
+                                    onClick={() => {
+                                        handleFile(file)
+                                    }}>{file}
+                                </td>
                             </tr>
                             </>
                         )
                     })}
+                    <tr>
+                        <td 
+                            onClick={() => {
+                                handleFile('all')
+                            }}>all files
+                        </td>
+                    </tr>
                     </>
                 )}
             </tbody>
